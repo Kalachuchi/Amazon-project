@@ -41,7 +41,7 @@ products.forEach((product)=>{
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -60,8 +60,8 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
-   const productId = button.dataset.productId;
-    let quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
+   const {productId} = button.dataset;
+    const quantity = Number (document.querySelector(`.js-quantity-selector-${productId}`).value);
     let matchingItem;
 
     cart.forEach((item) => {
@@ -71,11 +71,11 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     });
    
       if (matchingItem) {
-        matchingItem.quantity +=Number(quantitySelector.value);
+        matchingItem.quantity +=quantity;
       } else {
         cart.push({
-          productId: productId,
-          quantity: Number(quantitySelector.value)
+          productId,
+          quantity
         });
       };
       
@@ -85,7 +85,39 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
           cartQuantity += item.quantity;
         });
 
+        const addedElement = document.querySelector(`.js-added-to-cart-${productId}`);
+        addedElement.classList.add('added-to-cart-visible');
+
+        const AddedMessageTimeouts={};
+
+
+          const previousTimeoutId = AddedMessageTimeouts[productId];
+
+          if (previousTimeoutId) {
+            clearTimeout(previousTimeoutId);
+          };
+          
+          const timeoutId = setTimeout(() => {
+            addedElement.classList.remove('added-to-cart-visible');
+          },2000);
+
+          AddedMessageTimeouts[previousTimeoutId]=timeoutId;
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
         document.querySelector('.js-cart-quantity').innerHTML= cartQuantity;
   });
+
 });
 

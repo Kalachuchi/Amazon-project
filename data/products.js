@@ -656,5 +656,34 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "kbear22",
+    image: "images/products/backpack.jpg",
+    name: "K-Bear Backpack",
+    rating: {
+      stars: 5,
+      count: 2218
+    },
+    priceCents: 2200,
+    keywords: [
+      "bag",
+      "school",
+    ]    
+  },
+  {
+    id: "kbear18",
+    image: "images/products/umbrella.jpg",
+    name: "K-Bear Umbrella",
+    rating: {
+      stars: 5,
+      count: 1822
+    },
+    priceCents: 2200,
+    keywords: [
+      "umbrella",
+      "school",
+
+    ]    
   }
 ];
