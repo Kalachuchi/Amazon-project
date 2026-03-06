@@ -2,6 +2,9 @@ import { formatCurrency } from '../../scripts/utils/money.js';
 
 
 describe('test suite: formatCurrency', () => {
+
+ 
+
   it('converts cents into dollars',() =>{
     expect(formatCurrency(2095)).toEqual('20.95');
   });
@@ -10,6 +13,12 @@ describe('test suite: formatCurrency', () => {
   });
   it('Rounds up to the nearest cent',()=> {
     expect(formatCurrency(2000.5)).toEqual('20.01');
+  });
+  it('rounds down to the nearest cent', () => {
+    expect(formatCurrency(2000.4)).toEqual('20.00');
+  });
+  it('works for negative numbers',() => {
+    expect(formatCurrency(-6900)).toEqual('-69.00')
   });
 });
 
